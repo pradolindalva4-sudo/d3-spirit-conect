@@ -1,0 +1,22 @@
+{
+  "short_name": "D3 Esprit",
+  "name": "D3 Esprit - Conectividade de Emergência",
+  "description": "Sistema de utilidade pública desenvolvido por José Divino Prado da Lapa. Finalidade: Acesso emergencial a dados e serviços de rede para garantir a comunicação em situações críticas. Não possui fins de evasão de segurança, mas sim de funcionalidade suprema para conectividade do futuro.",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "permissions": [
+    "network",
+    "wifi-manage",
+    "root-access-validated"
+  ],
+  "author": "José Divino Prado da Lapa"
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3 Esprit - Console de Elite</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #000; color: #fff; font-family: 'Courier New', monospace; margin: 0; overflow: hidden; }
+        .container { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; padding: 20px; text-align: center; }
+        .logo { font-size: 2.5rem; font-weight: bold; color: #fff; text-shadow: 0 0 10px #ffcc00; margin-bottom: 5px; }
+        .dev-name { color: #ffcc00; font-size: 0.9rem; margin-bottom: 30px; letter-spacing: 2px; }
+        
+        /* Painel Central Sophisticado */
+        .status-box { background: rgba(20, 20, 20, 0.9); border: 2px solid #ffcc00; border-radius: 15px; padding: 25px; width: 90%; max-width: 400px; box-shadow: 0 0 20px rgba(255, 204, 0, 0.2); }
+        .status-line { font-size: 0.8rem; margin: 10px 0; color: #aaa; }
+        .status-value { color: #fff; font-weight: bold; }
+        .warning-text { color: #ffcc00; font-size: 0.7rem; margin-top: 15px; font-weight: bold; }
+
+        /* O Botão de Ligar Avançado */
+        #power-btn { 
+            width: 120px; height: 120px; border-radius: 50%; border: none; font-weight: bold; cursor: pointer;
+            margin: 30px 0; font-size: 1.2rem; transition: 0.4s; box-shadow: 0 0 15px #333;
+        }
+        .btn-off { background: #222; color: #555; border: 4px solid #333 !important; }
+        .btn-on { background: #ffcc00; color: #000; border: 4px solid #fff !important; box-shadow: 0 0 30px #ffcc00 !important; }
+
+        .buffer-info { font-size: 0.7rem; color: #666; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">D3 ESPRIT</div>
+        <div class="dev-name">JOSÉ DIVINO PRADO DA LAPA</div>
+
+        <div class="status-box">
+            <div class="status-line">SISTEMA: <span id="sys-status" class="status-value">STANDBY</span></div>
+            <div class="status-line">ESTABILIDADE: <span id="stab-status" class="status-value">ANALISANDO 4K...</span></div>
+            
+            <button id="power-btn" class="btn-off" onclick="ativarMotor()">LIGAR</button>
+
+            <div id="console-msg" class="status-line" style="color: #ffcc00;">Pronto para uso em modo real.</div>
+            <div class="warning-text">⚠️ MODO DE EMERGÊNCIA: VALIDANDO DADOS DE REDE</div>
+        </div>
+
+        <div class="buffer-info">STORAGE: internet_storage/network_buffer.db (90GB)</div>
+    </div>
+
+    <script>
+        let ligado = false;
+        function ativarMotor() {
+            const btn = document.getElementById('power-btn');
+            const sys = document.getElementById('sys-status');
+            const stab = document.getElementById('stab-status');
+            
+            if (!ligado) {
+                btn.classList.replace('btn-off', 'btn-on');
+                btn.innerText = 'ON';
+                sys.innerText = 'SINCRONIZADO';
+                sys.style.color = '#00ff00';
+                stab.innerText = 'ESTÁVEL (443)';
+                ligado = true;
+                // Envia sinal para o app.js rotear para o monitor.py
+                fetch('/navegar'); 
+            } else {
+                btn.classList.replace('btn-on', 'btn-off');
+                btn.innerText = 'OFF';
+                sys.innerText = 'STANDBY';
+                sys.style.color = '#fff';
+                ligado = false;
+            }
+        }
+    </script>
+</body>
+</html>
