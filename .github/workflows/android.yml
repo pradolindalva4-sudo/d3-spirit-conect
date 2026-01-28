@@ -1,4 +1,4 @@
-name: Build D3 Spirit
+name: Build D3 Spirit apk
 on: [push]
 jobs:
   build:
